@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NJEGAMF25_1_fordulo", "NJEGAMF25_1_fordulo\NJEGAMF25_1_fordulo.csproj", "{99AE32C0-F64E-4F66-A08D-9ACE95F78D8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{68374AD2-229B-4275-A0AC-FEF122ED109A}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\zsolt\Downloads\karsor.txt = C:\Users\zsolt\Downloads\karsor.txt
+		C:\Users\zsolt\Downloads\szoveg.txt = C:\Users\zsolt\Downloads\szoveg.txt
+		C:\Users\zsolt\Downloads\terkep.txt = C:\Users\zsolt\Downloads\terkep.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99AE32C0-F64E-4F66-A08D-9ACE95F78D8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99AE32C0-F64E-4F66-A08D-9ACE95F78D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99AE32C0-F64E-4F66-A08D-9ACE95F78D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99AE32C0-F64E-4F66-A08D-9ACE95F78D8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {857B5BF6-530F-4E99-9220-A82948BD81AD}
+	EndGlobalSection
+EndGlobal
