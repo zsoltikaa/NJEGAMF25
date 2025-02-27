@@ -58,7 +58,7 @@ foreach (char c in input)
         abcCount += abCount; 
 }
 
-Console.WriteLine($"B resz: {abcCount:N0}"); 
+Console.WriteLine($"B resz: {abcCount}"); 
 
 // 1. feladat (c resz) ----------------------------------------------------------------------------------------------------------------------------------------------------
 
