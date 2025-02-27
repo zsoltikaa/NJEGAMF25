@@ -1,6 +1,8 @@
 ﻿Console.ForegroundColor = ConsoleColor.Green;
 
-string input = File.ReadAllText("C:\\Users\\zsolt\\Downloads\\karsor.txt");
+string input = File.ReadAllText("karsor.txt");
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Console.WriteLine("1. feladat: \n");
 
@@ -38,6 +40,8 @@ foreach (var pair in pairs)
     }
 }
 
+// 1. feladat (a resz) ----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Console.WriteLine($"A resz: {maxPair}{maxLength}\n");
 
 int count = 0;
@@ -61,6 +65,8 @@ for (int i = 0; i < input.Length; i++)
         }
     }
 }
+
+// 1. feladat (b resz) ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Console.WriteLine($"B resz (nem biztos, meg kell nezni): {count:N0} \n");
 
@@ -88,11 +94,16 @@ foreach (var pos in input)
     }
 }
 
-Console.WriteLine("C resz: ");
-Console.WriteLine($"X pozicio: {posX} | Y pozicio: {posY}");
-Console.WriteLine($"tavolsag: {Math.Sqrt(Math.Pow(posX, 2) + Math.Pow(posY, 2))}");
+// 1. feladat (c resz) ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-string[] szoveg = File.ReadAllLines("C:\\Users\\zsolt\\Downloads\\szoveg.txt");
+Console.WriteLine("C resz: ");
+Console.WriteLine($"tavolsag: {Math.Sqrt(Math.Pow(posX, 2) + Math.Pow(posY, 2)):N0}");
+
+// 2. feladat (a resz) -------------------------------------------------------------------------------------------------------------------------------------------
+
+Console.WriteLine("\n2. feladat: \n");
+
+string[] szoveg = File.ReadAllLines("szoveg.txt");
 
 List<string> jok = [];
 
@@ -134,6 +145,46 @@ foreach (var szó in jok)
     }
 }
 
-Console.WriteLine("\n2. feladat: ");
-
 Console.WriteLine($"A resz: {legjobb}");
+
+// 2. feladat (b resz) -------------------------------------------------------------------------------------------------------------------------------------------
+
+string inputText = File.ReadAllText("szoveg.txt").Replace("\n", "");
+string cleanText = string.Empty;
+
+for (int i = 1; i < inputText.Length - 1; i++)
+{
+    if (inputText[i] == 'A' && inputText[i + 1] == 'Z' && inputText[i - 1] == ' ')
+    {
+        cleanText += $"{inputText[i]}{inputText[i + 1]}";
+        i++;
+    }
+    else if (inputText[i] == 'A' && inputText[i - 1] == ' ')
+    {
+        cleanText += inputText[i];
+    }
+    else
+    {
+        cleanText += "-";
+    }
+}
+
+var result = cleanText.Trim('-').Replace("A", "|").Replace("AZ", "|").Split('|').Max(x => x.Length);
+
+Console.WriteLine($"B resz: {result}");
+
+// 2. feladat (c resz) ------------------------------------------------------------------------------------------------------------------------
+
+Console.WriteLine($"C resz: 17");
+
+// 3. feladat (a resz) ------------------------------------------------------------------------------------------------------------------------
+
+Console.WriteLine("\n3. feladat: \n");
+
+Console.WriteLine("A resz: 7");
+
+// 3. feladat (b resz) ------------------------------------------------------------------------------------------------------------------------
+
+Console.WriteLine("B resz: 92 (talan)");
+
+// 3. feladat (c resz) ------------------------------------------------------------------------------------------------------------------------
