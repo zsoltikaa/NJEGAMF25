@@ -2,7 +2,9 @@
 
 string input = File.ReadAllText("karsor.txt");
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------------
+// 1. feladat (a resz) ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Console.WriteLine("------------------------------------------------------------");
 
 Console.WriteLine("1. feladat: \n");
 
@@ -40,35 +42,25 @@ foreach (var pair in pairs)
     }
 }
 
-// 1. feladat (a resz) ----------------------------------------------------------------------------------------------------------------------------------------------------
-
-Console.WriteLine($"A resz: {maxPair}{maxLength}\n");
-
-int count = 0;
-
-for (int i = 0; i < input.Length; i++)
-{
-    if (input[i] == 'a')
-    {
-        for (int j = i + 1; j < input.Length; j++)
-        {
-            if (input[j] == 'b')
-            {
-                for (int k = j + 1; k < input.Length; k++)
-                {
-                    if (input[k] == 'c')
-                    {
-                        count++;
-                    }
-                }
-            }
-        }
-    }
-}
+Console.WriteLine($"A resz: {maxPair}{maxLength}");
 
 // 1. feladat (b resz) ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-Console.WriteLine($"B resz (nem biztos, meg kell nezni): {count:N0} \n");
+int aCount = 0, abCount = 0, abcCount = 0;
+
+foreach (char c in input)
+{
+    if (c == 'a')
+        aCount++;
+    else if (c == 'b')
+        abCount += aCount;
+    else if (c == 'c')
+        abcCount += abCount; 
+}
+
+Console.WriteLine($"B resz: {abcCount:N0}"); 
+
+// 1. feladat (c resz) ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 int posX = 0;
 int posY = 0;
@@ -94,12 +86,11 @@ foreach (var pos in input)
     }
 }
 
-// 1. feladat (c resz) ----------------------------------------------------------------------------------------------------------------------------------------------------
-
-Console.WriteLine("C resz: ");
-Console.WriteLine($"tavolsag: {Math.Sqrt(Math.Pow(posX, 2) + Math.Pow(posY, 2)):N0}");
+Console.WriteLine($"C resz: {Math.Sqrt(Math.Pow(posX, 2) + Math.Pow(posY, 2)):N0}");
 
 // 2. feladat (a resz) -------------------------------------------------------------------------------------------------------------------------------------------
+
+Console.WriteLine("\n------------------------------------------------------------");
 
 Console.WriteLine("\n2. feladat: \n");
 
@@ -171,13 +162,15 @@ for (int i = 1; i < inputText.Length - 1; i++)
 
 var result = cleanText.Trim('-').Replace("A", "|").Replace("AZ", "|").Split('|').Max(x => x.Length);
 
-Console.WriteLine($"B resz: {result}");
+Console.WriteLine($"B resz: {result} (talan)");
 
 // 2. feladat (c resz) ------------------------------------------------------------------------------------------------------------------------
 
 Console.WriteLine($"C resz: 17");
 
 // 3. feladat (a resz) ------------------------------------------------------------------------------------------------------------------------
+
+Console.WriteLine("\n------------------------------------------------------------");
 
 Console.WriteLine("\n3. feladat: \n");
 
@@ -190,3 +183,5 @@ Console.WriteLine("B resz: 78 (talan)");
 // 3. feladat (c resz) ------------------------------------------------------------------------------------------------------------------------
 
 Console.WriteLine("C resz: 53 (talan)");
+
+Console.WriteLine("\n------------------------------------------------------------");
