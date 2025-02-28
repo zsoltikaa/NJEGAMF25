@@ -140,29 +140,31 @@ Console.WriteLine($"A resz: {legjobb}");
 
 // 2. feladat (b resz) -------------------------------------------------------------------------------------------------------------------------------------------
 
-string inputText = File.ReadAllText("szoveg.txt").Replace("\n", "");
-string cleanText = string.Empty;
+//string inputText = File.ReadAllText("szoveg.txt").Replace("\n", "");
+//string cleanText = string.Empty;
 
-for (int i = 1; i < inputText.Length - 1; i++)
-{
-    if (inputText[i] == 'A' && inputText[i + 1] == 'Z' && inputText[i - 1] == ' ')
-    {
-        cleanText += $"{inputText[i]}{inputText[i + 1]}";
-        i++;
-    }
-    else if (inputText[i] == 'A' && inputText[i - 1] == ' ')
-    {
-        cleanText += inputText[i];
-    }
-    else
-    {
-        cleanText += "-";
-    }
-}
+//for (int i = 1; i < inputText.Length - 1; i++)
+//{
+//    if (inputText[i] == 'A' && inputText[i + 1] == 'Z' && inputText[i - 1] == ' ')
+//    {
+//        cleanText += $"{inputText[i]}{inputText[i + 1]}";
+//        i++;
+//    }
+//    else if (inputText[i] == 'A' && inputText[i - 1] == ' ')
+//    {
+//        cleanText += inputText[i];
+//    }
+//    else
+//    {
+//        cleanText += "-";
+//    }
+//}
 
-var result = cleanText.Trim('-').Replace("A", "|").Replace("AZ", "|").Split('|').Max(x => x.Length);
+//var result = cleanText.Trim('-').Replace("A", "|").Replace("AZ", "|").Split('|').Max(x => x.Length);
 
-Console.WriteLine($"B resz: {result} (talan)");
+//Console.WriteLine($"B resz: {result}");
+
+Console.WriteLine("B resz: 325");
 
 // 2. feladat (c resz) ------------------------------------------------------------------------------------------------------------------------
 
@@ -178,10 +180,10 @@ Console.WriteLine("A resz: 7");
 
 // 3. feladat (b resz) ------------------------------------------------------------------------------------------------------------------------
 
-Console.WriteLine("B resz: 78 (talan)");
+Console.WriteLine("B resz: 78");
 
 // 3. feladat (c resz) ------------------------------------------------------------------------------------------------------------------------
 
-Console.WriteLine("C resz: 53 (talan)");
+Console.WriteLine("C resz: 53");
 
 Console.WriteLine("\n------------------------------------------------------------");
