@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NJEGAMF25_1_fordulo", "NJEGAMF25_1_fordulo\NJEGAMF25_1_fordulo.csproj", "{99AE32C0-F64E-4F66-A08D-9ACE95F78D8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NJEGAMF25_1_fordulo", "NJEGAMF25_1_fordulo\NJEGAMF25_1_fordulo.csproj", "{99AE32C0-F64E-4F66-A08D-9ACE95F78D8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NJEGAMF25_2_fordulo", "NJEGAMF25_2_fordulo\NJEGAMF25_2_fordulo.csproj", "{D781A2F9-4CE6-4FAC-A54A-F9A88093FC9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{99AE32C0-F64E-4F66-A08D-9ACE95F78D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99AE32C0-F64E-4F66-A08D-9ACE95F78D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99AE32C0-F64E-4F66-A08D-9ACE95F78D8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D781A2F9-4CE6-4FAC-A54A-F9A88093FC9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D781A2F9-4CE6-4FAC-A54A-F9A88093FC9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D781A2F9-4CE6-4FAC-A54A-F9A88093FC9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D781A2F9-4CE6-4FAC-A54A-F9A88093FC9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
