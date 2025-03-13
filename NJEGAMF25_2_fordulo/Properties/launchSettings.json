@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "NJEGAMF25_2_fordulo": {
+      "commandName": "Project"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}

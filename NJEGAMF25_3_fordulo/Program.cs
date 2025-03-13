@@ -47,98 +47,145 @@ Console.WriteLine("\n-----------------------------------------------------");
 
 Console.WriteLine("3. feladat: \n");
 
-static IEnumerable<int[]> GetCombinationsWithRepetition(int[] digits, int length)
-{
-    int[] result = new int[length];
-    return GenerateCombinations(digits, result, 0, 0);
-}
+Dictionary<string, List<string>> szamokRaw = new();
 
-static IEnumerable<int[]> GenerateCombinations(int[] digits, int[] result, int index, int start)
+for (int i = 1; i < 10; i++)
 {
-    if (index == result.Length)
+    for (int j = 1; j < 10; j++)
     {
-        yield return (int[])result.Clone();
-        yield break;
-    }
-
-    for (int i = start; i < digits.Length; i++)
-    {
-        result[index] = digits[i];
-        foreach (var combo in GenerateCombinations(digits, result, index + 1, i))
-            yield return combo;
-    }
-}
-
-static IEnumerable<int> GetUniquePermutations(int[] digits)
-{
-    return GetPermutations(digits, 0).Select(arr => ConvertToInt(arr)).Distinct();
-}
-
-static IEnumerable<int[]> GetPermutations(int[] digits, int index)
-{
-    if (index == digits.Length - 1)
-    {
-        yield return (int[])digits.Clone();
-    }
-    else
-    {
-        HashSet<int> used = new HashSet<int>();
-        for (int i = index; i < digits.Length; i++)
+        for (int k = 1; k < 10; k++)
         {
-            if (used.Add(digits[i]))
+            for (int l = 1; l < 10; l++)
             {
-                Swap(digits, index, i);
-                foreach (var perm in GetPermutations(digits, index + 1))
-                    yield return perm;
-                Swap(digits, index, i);
+                string num = $"{i}{j}{k}{l}";
+                szamokRaw.Add(num, new());
             }
         }
     }
 }
 
-static void Swap(int[] arr, int i, int j)
+foreach (var item in szamokRaw)
 {
-    int temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
+    List<string> duplicate = new();
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if (j == i) continue;
+            for (int k = 0; k < 4; k++)
+            {
+                if (k == j || k == i) continue;
+                for (int l = 0; l < 4; l++)
+                {
+                    if (l == k || l == j || l == i) continue;
+                    string szam = $"{item.Key[i]}{item.Key[j]}{item.Key[k]}{item.Key[l]}";
+                    if (!duplicate.Contains(szam))
+                    {
+                        szamokRaw[item.Key].Add(szam);
+                        duplicate.Add(szam);
+                    }
+                }
+            }
+        }
+    }
 }
 
-static int ConvertToInt(int[] arr)
+static bool IsPrime(long number)
 {
-    int num = 0;
-    foreach (var digit in arr)
-    {
-        num = num * 10 + digit;
-    }
-    return num;
-}
 
-static bool IsPrime(int num)
-{
-    if (num < 2) return false;
-    if (num % 2 == 0 && num != 2) return false;
-    for (int i = 3; i * i <= num; i += 2)
+    if (number <= 1)
+        return false;
+    if (number == 2 || number == 3)
+        return true;
+    if (number % 2 == 0 || number % 3 == 0)
+        return false;
+
+    for (long i = 5; i * i <= number; i += 6)
     {
-        if (num % i == 0) return false;
+        if (number % i == 0 || number % (i + 2) == 0)
+            return false;
     }
+
     return true;
+
 }
 
-int count = 0;
-var digits = Enumerable.Range(0, 10).ToArray(); 
+Dictionary<string, List<string>> szamok = [];
+List<List<string>> voltmar = [];
 
-foreach (var combination in GetCombinationsWithRepetition(digits, 4))
+foreach (var negyes in szamokRaw)
 {
-    var uniquePermutations = GetUniquePermutations(combination)
-        .Where(n => n >= 1000) 
-        .ToHashSet(); 
-
-    int primeCount = uniquePermutations.Count(IsPrime);
-
-    if (primeCount >= 6)
+    bool dupl = false;
+    List<string> value = negyes.Value.OrderBy(x => x).ToList();
+    if (voltmar.Count == 0)
     {
-        count++;
+        voltmar.Add(value);
+        szamok.Add(negyes.Key, value);
+        continue;
+    }
+    foreach (var vót in voltmar)
+    {
+        var vótOrd = vót.OrderBy(x => x).ToList();
+        if (value.SequenceEqual(vótOrd))
+        {
+            dupl = true;
+            break;
+        }
+    }
+
+    if (!dupl)
+    {
+        voltmar.Add(value);
+        szamok.Add(negyes.Key, value);
     }
 }
 
-Console.WriteLine($"A resz: {count}");
+Dictionary<string, List<string>> Primes = [];
+
+int counter = 0;
+foreach (var item in szamok)
+{
+    int primeCounter = 0;
+    foreach (var num in item.Value)
+    {
+        if (IsPrime(int.Parse(num)))
+        {
+            if (!Primes.ContainsKey(item.Key)) Primes.Add(item.Key, new());
+            Primes[item.Key].Add(num);
+            primeCounter++;
+        }
+    }
+    if (primeCounter > 5) counter++;
+}
+Console.WriteLine($"A resz: {counter}");
+
+// 3. task (b part) ------------------------------------------------------------------
+
+foreach (var item in Primes)
+{
+
+    bool found = false;
+    if (item.Value.Count < 3) continue;
+
+    for (int i = 0; i < item.Value.Count - 2; i++)
+    {
+        int fnum = int.Parse(item.Value[i]);
+        int snum = int.Parse(item.Value[i + 1]);
+        int tnum = int.Parse(item.Value[i + 2]);
+        int dif = snum - fnum;
+        if (fnum + dif == snum && snum + dif == tnum)
+        {
+            Console.WriteLine($"B resz: {fnum} {snum} {tnum}");
+            found = true;
+            break;
+        }
+    }
+
+    if (found) break;
+}
+
+// 4. task (a part) ------------------------------------------------------------------
+
+Console.WriteLine("\n-----------------------------------------------------");
+
+Console.WriteLine("4. feladat: ");
