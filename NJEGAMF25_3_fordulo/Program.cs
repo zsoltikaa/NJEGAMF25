@@ -172,21 +172,12 @@ Console.WriteLine("3. feladat: \n");
 
 Dictionary<string, List<string>> szamokRaw = new();
 
-for (int i = 1; i < 10; i++)
+for (int i = 1000; i <= 9999; i++)
 {
-    for (int j = 1; j < 10; j++)
-    {
-        for (int k = 1; k < 10; k++)
-        {
-            for (int l = 1; l < 10; l++)
-            {
-                string num = $"{i}{j}{k}{l}";
-                szamokRaw.Add(num, new());
-            }
-        }
-    }
+    szamokRaw.Add(i.ToString(), new());
 }
 
+//permutációk
 foreach (var item in szamokRaw)
 {
     List<string> duplicate = new();
@@ -215,7 +206,7 @@ foreach (var item in szamokRaw)
 
 static bool IsPrime(long number)
 {
-
+    // Kezeljük a speciális eseteket
     if (number <= 1)
         return false;
     if (number == 2 || number == 3)
@@ -223,6 +214,7 @@ static bool IsPrime(long number)
     if (number % 2 == 0 || number % 3 == 0)
         return false;
 
+    // Csak a 6k ± 1 alakú számokat ellenõrizzük
     for (long i = 5; i * i <= number; i += 6)
     {
         if (number % i == 0 || number % (i + 2) == 0)
@@ -230,23 +222,22 @@ static bool IsPrime(long number)
     }
 
     return true;
-
 }
 
-Dictionary<string, List<string>> szamok = [];
-List<List<string>> voltmar = [];
-
+Dictionary<string, List<string>> szamok = new();
+List<List<string>> duplicatedPairs = new();
+//számnégyes duplikációk szûrése
 foreach (var negyes in szamokRaw)
 {
     bool dupl = false;
     List<string> value = negyes.Value.OrderBy(x => x).ToList();
-    if (voltmar.Count == 0)
+    if (duplicatedPairs.Count == 0)
     {
-        voltmar.Add(value);
+        duplicatedPairs.Add(value);
         szamok.Add(negyes.Key, value);
         continue;
     }
-    foreach (var vót in voltmar)
+    foreach (var vót in duplicatedPairs)
     {
         var vótOrd = vót.OrderBy(x => x).ToList();
         if (value.SequenceEqual(vótOrd))
@@ -258,19 +249,23 @@ foreach (var negyes in szamokRaw)
 
     if (!dupl)
     {
-        voltmar.Add(value);
+        duplicatedPairs.Add(value);
         szamok.Add(negyes.Key, value);
     }
 }
 
-Dictionary<string, List<string>> Primes = [];
 
+Dictionary<string, List<string>> Primes = new();
+
+//számlálás
 int counter = 0;
 foreach (var item in szamok)
 {
     int primeCounter = 0;
+
     foreach (var num in item.Value)
     {
+        //if (num[0] == '0') Console.WriteLine($"{int.Parse(num)}");
         if (IsPrime(int.Parse(num)))
         {
             if (!Primes.ContainsKey(item.Key)) Primes.Add(item.Key, new());
@@ -298,13 +293,14 @@ foreach (var item in Primes)
         int dif = snum - fnum;
         if (fnum + dif == snum && snum + dif == tnum)
         {
-            Console.WriteLine($"B resz: {fnum} {snum} {tnum}");
+            Console.WriteLine($"B resz: {fnum}{snum}{tnum}");
             found = true;
             break;
         }
     }
 
     if (found) break;
+
 }
 
 // 4. task --------------------------------------------------------------------------
